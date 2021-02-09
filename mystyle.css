@@ -47,6 +47,9 @@ table, th, td {
   border: 1px solid black;
   border-collapse: collapse;
 }
+p{
+    font-size:15px;
+}
 
 /* Dropdown Button */
 .btn {
