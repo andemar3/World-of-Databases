@@ -6,6 +6,38 @@ DROP TABLE IF EXISTS Items;
 DROP TABLE IF EXISTS PlayersItems;
 SET FOREIGN_KEY_CHECKS = 1;
 
+-- get all players, locations and items to populate the play game table
+SELECT playerName, currentLocationID, itemID FROM Players, PlayersItems;
+
+-- get all Quest, Location, Items to populate 2nd play game table
+SELECT questRewardedFrom, questLocation, itemName FROM Items, Quests WHERE Quests.questName = Items.questRewardedFrom;
+
+-- get all Quest, Items for search tab
+SELECT questRewardedFrom, itemName FROM Items;
+
+-- get all Players, Locations for search tab
+SELECT playerName, currentLocationID FROM Players;
+
+-- get locationID of current player for edit dropdown
+-- somehow need a current_playerID
+SELECT currentLocationID, FROM Players WHERE playerID = current_playerID;
+
+-- get quest of current player for edit dropdown
+SELECT currentQuest FROM Players WHERE playerID = current_playerID;
+
+-- get items of current player for edit dropdown
+SELECT itemID FROM PlayersItems where playerID = current_playerID;
+
+-- update/change location of current player
+-- somehow make a newLocationID?
+UPDATE Players SET currentLocationID = newLocationID WHERE playerID = current_playerID;
+
+-- update to mark quest as complete
+UPDATE Players SET numberofQuestsCompleted = numberofQuestsCompleted + 1 WHERE playerID = current_playerID;
+UPDATE Players SET currentQuest = 0 WHERE playerID = current_playerID;
+-- update to use items and add to player stats
+-- trying to use the varible inside statBoosted ex. 'playerHealth'
+UPDATE Players SET Players.statBoosted = Players.statBoosted + PlayerItems.statBoostAmount WHERE playerID = current_playerID;
 
 CREATE TABLE Locations (
 	locationID int(11) AUTO_INCREMENT UNIQUE NOT NULL,
