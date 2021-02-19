@@ -39,6 +39,10 @@ UPDATE Players SET currentQuest = 0 WHERE playerID = current_playerID;
 -- trying to use the varible inside statBoosted ex. 'playerHealth'
 UPDATE Players SET Players.statBoosted = Players.statBoosted + PlayerItems.statBoostAmount WHERE playerID = current_playerID;
 
+-- update to add a quest. Trying to do an if statement
+IF Players.currentQuest == 0 THEN
+    UPDATE Players SET currentQuest = (SELECT questID FROM Quests) WHERE playerID = current_playerID;
+
 CREATE TABLE Locations (
 	locationID int(11) AUTO_INCREMENT UNIQUE NOT NULL,
 	locationName varchar(255) UNIQUE NOT NULL,
