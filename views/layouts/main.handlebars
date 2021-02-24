@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+<head>
+	<title>Demo Page</title>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    {{#each jsscripts}}
+    <script src="/static/{{this}}"></script>
+    {{/each}}
+</head>
+<body>
+	<h1 class="title">World of Databases</h1>
+	<h2 class="subtitle">Developer View<h2>
+  
+	<div class="navigation-menu">
+        <a href="/playgame" class="menu-button">Play Game</a>
+        <a href="/search" class="menu-button">Search</a>
+		<a href="/playermanager" class="menu-button">Player Manager</a>
+		<a href="/contentcreator" class="menu-button">Content Creator</a>
+	</div>
+	<br/>
+	{{{body}}}
+</body>
+</html>

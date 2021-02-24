@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Content Creator</title>
+    <link rel="stylesheet" href ="style.css">
+	<script src="/js/placeholder.js"></script>
+  </head>
+  <body>
+
+    <div class="location-create">
+        <form name="CreateLocation" class="CreateLocation" action="/placeholder">
+			<h3 class="form-header">Create a Location</h3>
+			<label for="location-name">Location Name<span class="required">*</span></label>
+			<br/>
+            <input type="text" id="location-name" name="location-name" placeholder="Location Name" required>
+			<br/>
+			<button class="form-submit" type="submit">Create Location</button>
+		</form>
+    </div>
+	<br/>
+	<div class="quest-create">
+        <form name="CreateQuest" class="CreateQuest" action="/placeholder">
+			<h3 class="form-header">Create a Quest</h3>
+			<label for="quest-name">Quest Name<span class="required">*</span></label>
+			<br/>
+            <input type="text" id="quest-name" name="quest-name" placeholder="Quest Name" required>
+			<br/>
+			<label for="location-id">Location of Quest<span class="required">*</span></label>
+			<br/>
+            <input type="number" id="location-id" name="location-id" placeholder="Location ID" required>
+			<br/>
+			<label for="stat-req">Stat Type Required to Complete</label>
+			<br/>
+			<select name = "stat-req">
+				<option value = "playerHealth" selected>Health</option>
+				<option value = "playerMagic">Magic</option>
+				<option value = "strengthStat">Strength</option>
+				<option value = "intelligenceStat" selected>Intelligence</option>
+				<option value = "defenceStat">Defence</option>
+			</select>
+			<br/>
+			<label for="stat-min">Stat Amount Required to Complete</label>
+			<br/>
+            <input type="number" id="stat-min" name="stat-min" placeholder="0">
+			<br/>
+			<button class="form-submit" type="submit">Create Quest</button>
+		</form>
+    </div>
+	<br/>
+	<div class="item-create">
+        <form name="CreateQuest" class="CreateQuest" action="/placeholder">
+			<h3 class="form-header">Create an Item</h3>
+			<label for="item-name">Item Name<span class="required">*</span></label>
+			<br/>
+            <input type="text" id="item-name" name="item-name" placeholder="Item Name" required>
+			<br/>
+			<label for="quest-id">Quest Rewarded From<span class="required">*</span></label>
+			<br/>
+            <input type="number" id="quest-id" name="quest-id" placeholder="Quest ID" required>
+			<br/>
+			<label for="stat-type">Stat Type Boosted</label>
+			<br/>
+			<select name = "stat-type">
+				<option value = "playerHealth" selected>Health</option>
+				<option value = "playerMagic">Magic</option>
+				<option value = "strengthStat">Strength</option>
+				<option value = "intelligenceStat" selected>Intelligence</option>
+				<option value = "defenceStat">Defence</option>
+			</select>
+			<br/>
+			<label for="stat-amount">Stat Boost Amount</label>
+			<br/>
+            <input type="number" id="stat-amount" name="stat-ammount" placeholder="0">
+			<br/>
+			<button class="form-submit" type="submit">Create Item</button>
+		</form>
+    </div>
+	<br/>
+  </body>
+</html>

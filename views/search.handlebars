@@ -1,0 +1,69 @@
+<html>
+    <head>
+        <title>Search</title>
+        <link rel="stylesheet" type="text/css" href="mystyle.css">
+        <link rel="stylesheet" href ="style.css">
+        <script src="/script.js"></script>
+    </head>
+    <body>
+        <h1 class="title">World of Databases</h1>
+        <h2 class="subtitle">Player View<h2>
+    <div class="navigation-menu">
+        <a href="playgame.html" class="menu-button">Play Game</a>
+        <a href="search.html" class="menu-button">Search</a>
+		<a href="playermanager.html" class="menu-button">Player Manager</a>
+		<a href="contentcreator.html" class="menu-button">Content Creator</a>
+	</div>
+            <p>Hover over table entries for tooltips</p>
+        <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Filter by Quest or Item..">
+        <table id="myTable">
+          <tr class="header">
+            <th style="width:60%;">Quest</th>
+            <th style="width:40%;">Items</th>
+          </tr>
+          <tr>
+              
+            <td title="Click to add quest!">Quest 1</td>
+            <td>Item 1</td>
+          </tr>
+          <tr>
+            <td title="Click to add quest!">Quest 2</td>
+            <td>Item 2</td>
+          </tr>
+          <tr>
+            <td title="Click to add quest!">Quest 3</td>
+            <td>Item 3</td>
+          </tr>
+          <tr>
+            <td title="Click to add quest!">Quest 4</td>
+            <td>Item 4</td>
+          </tr>
+        </table>
+        
+        <div class="myDiv"></div>
+        <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Filter by Player or Location..">
+        <table id="myTable">
+          <tr class="header">
+            <th style="width:60%;">Player</th>
+            <th style="width:40%;">Location</th>
+          </tr>
+          <tr>
+            <td>Player 1</td>
+            <td>Location 1</td>
+          </tr>
+          <tr>
+            <td>Player 2</td>
+            <td>Location 2</td>
+          </tr>
+          <tr>
+            <td>Player 3</td>
+            <td>Location 3</td>
+          </tr>
+          <tr>
+            <td>Player 4</td>
+            <td>Location 4</td>
+          </tr>
+        </table>
+        
+    </body>
+</html>
