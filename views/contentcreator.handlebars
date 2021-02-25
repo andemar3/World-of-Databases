@@ -8,30 +8,35 @@
   <body>
 
     <div class="location-create">
-        <form name="CreateLocation" class="CreateLocation" action="/placeholder">
+        <form action="/contentcreator/location" method="post">
 			<h3 class="form-header">Create a Location</h3>
-			<label for="location-name">Location Name<span class="required">*</span></label>
+			<label for="locationName">Location Name<span class="required">*</span></label>
 			<br/>
-            <input type="text" id="location-name" name="location-name" placeholder="Location Name" required>
+            <input type="text" id="locationName" name="locationName" placeholder="Location Name" required>
 			<br/>
 			<button class="form-submit" type="submit">Create Location</button>
 		</form>
     </div>
 	<br/>
 	<div class="quest-create">
-        <form name="CreateQuest" class="CreateQuest" action="/placeholder">
+        <form action="/contentcreator/quest" method="post">
 			<h3 class="form-header">Create a Quest</h3>
-			<label for="quest-name">Quest Name<span class="required">*</span></label>
+			<label for="questName">Quest Name<span class="required">*</span></label>
 			<br/>
-            <input type="text" id="quest-name" name="quest-name" placeholder="Quest Name" required>
+            <input type="text" id="questName" name="questName" placeholder="Quest Name" required>
 			<br/>
-			<label for="location-id">Location of Quest<span class="required">*</span></label>
+			<label for="questLocation">Location of Quest<span class="required">*</span></label>
 			<br/>
-            <input type="number" id="location-id" name="location-id" placeholder="Location ID" required>
+            <select name = "questLocation">
+			<!--list each Location from database-->
+			{{#each locations}}
+			<option value="{{id}}">{{locationName}}</option>
+			{{/each}}
+			</select>
 			<br/>
-			<label for="stat-req">Stat Type Required to Complete</label>
+			<label for="statRequired">Stat Type Required to Complete</label>
 			<br/>
-			<select name = "stat-req">
+			<select name = "statRequired">
 				<option value = "playerHealth" selected>Health</option>
 				<option value = "playerMagic">Magic</option>
 				<option value = "strengthStat">Strength</option>
@@ -39,28 +44,33 @@
 				<option value = "defenceStat">Defence</option>
 			</select>
 			<br/>
-			<label for="stat-min">Stat Amount Required to Complete</label>
+			<label for="statMinimum">Stat Amount Required to Complete</label>
 			<br/>
-            <input type="number" id="stat-min" name="stat-min" placeholder="0">
+            <input type="number" id="statMinimum" name="statMinimum" placeholder="0">
 			<br/>
 			<button class="form-submit" type="submit">Create Quest</button>
 		</form>
     </div>
 	<br/>
 	<div class="item-create">
-        <form name="CreateQuest" class="CreateQuest" action="/placeholder">
+        <form action="/contentcreator/item" method="post">
 			<h3 class="form-header">Create an Item</h3>
-			<label for="item-name">Item Name<span class="required">*</span></label>
+			<label for="itemName">Item Name<span class="required">*</span></label>
 			<br/>
-            <input type="text" id="item-name" name="item-name" placeholder="Item Name" required>
+            <input type="text" id="itemName" name="itemName" placeholder="Item Name" required>
 			<br/>
-			<label for="quest-id">Quest Rewarded From<span class="required">*</span></label>
+			<label for="questRewardedFrom">Quest Rewarded From<span class="required">*</span></label>
 			<br/>
-            <input type="number" id="quest-id" name="quest-id" placeholder="Quest ID" required>
+            <select name = "questRewardedFrom">
+			<!--list each Quest from database-->
+			{{#each quests}}
+			<option value="{{id}}">{{questName}}</option>
+			{{/each}}
+			</select>
 			<br/>
-			<label for="stat-type">Stat Type Boosted</label>
+			<label for="statBoosted">Stat Type Boosted</label>
 			<br/>
-			<select name = "stat-type">
+			<select name = "statBoosted" id="statBoosted">
 				<option value = "playerHealth" selected>Health</option>
 				<option value = "playerMagic">Magic</option>
 				<option value = "strengthStat">Strength</option>
@@ -68,9 +78,9 @@
 				<option value = "defenceStat">Defence</option>
 			</select>
 			<br/>
-			<label for="stat-amount">Stat Boost Amount</label>
+			<label for="statBoostAmount">Stat Boost Amount</label>
 			<br/>
-            <input type="number" id="stat-amount" name="stat-ammount" placeholder="0">
+            <input type="number" id="statBoostAmount" name="statBoostAmount" placeholder="0">
 			<br/>
 			<button class="form-submit" type="submit">Create Item</button>
 		</form>
