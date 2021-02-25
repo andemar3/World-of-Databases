@@ -18,7 +18,6 @@ CREATE TABLE Quests (
 	questLocation int NOT NULL,
 	statRequired varchar(25) NOT NULL,
 	statMinimum int NOT NULL,
-	statBoostAmount int,
 	PRIMARY KEY (questID),
 	FOREIGN KEY (questLocation) REFERENCES Locations(locationID)
 );

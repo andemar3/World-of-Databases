@@ -14,7 +14,7 @@ module.exports = function(){
         });
     }
 	
-//get all Locations
+//get all Quests
 	function getQuests(res, mysql, context, complete){
 		mysql.pool.query("SELECT questId as id, questName FROM Quests", function(error, results, fields){
             if(error){
@@ -48,7 +48,7 @@ module.exports = function(){
         console.log(req.body)
         var mysql = req.app.get('mysql');
         var sql = "INSERT INTO Quests (questName, questLocation, statRequired, statMinimum) VALUES (?, ?, ?, ?)";
-        var inserts = [req.body.locationName];
+        var inserts = [req.body.questName, req.body.questLocation, req.body.statRequired, req.body.statMinimum];
         sql = mysql.pool.query(sql,inserts,function(error, results, fields){
             if(error){
                 console.log(JSON.stringify(error))
@@ -65,7 +65,7 @@ module.exports = function(){
         console.log(req.body)
         var mysql = req.app.get('mysql');
         var sql = "INSERT INTO Items (itemName, questRewardedFrom, statBoosted, statBoostAmount) VALUES (?, ?, ?, ?)";
-        var inserts = [req.body.locationName];
+        var inserts = [req.body.itemName, req.body.questRewardedFrom, req.body.statBoosted, req.body.statBoostAmount];
         sql = mysql.pool.query(sql,inserts,function(error, results, fields){
             if(error){
                 console.log(JSON.stringify(error))
