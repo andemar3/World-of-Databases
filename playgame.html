@@ -30,6 +30,43 @@
           </div>
         </div>
         <div class="smolDiv"></div>
+            
+   <!--   This is an example i have been trying to get working      
+  <div class="table">
+<h2>Display Data using Node.js & MySQL</h2>
+    <table border="1">
+        <tr>
+            <th>S.N</th>
+            <th>Full Name</th>
+            <th>Email Address</th>
+            <th>City</th>
+            <th>Country</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+        
+        <%
+        if(result.length!=0){
+        var i=1;
+        result.forEach(function(data){
+        %>
+        <tr>
+            <td><%=i; %></td>
+            <td><%=data.fullName %></td>
+            <td><%=data.emailAddress %></td>
+            <td><%=data.city %></td>
+            <td><%=data.country %></td>
+            <td><a href="/users/edit/<%=data.id%>">Edit</a></td>
+            <td><a href="/users/delete/<%=data.id%>">Delete</a></td>
+        </tr>
+        <%  i++; }) %>
+        <% } else{ %>
+            <tr>
+                <td colspan="7">No Data Found</td>
+            </tr>
+        <% } %>
+    </table>
+-->
         <table id="myTable">
           <tr class="header">
               <tr>
