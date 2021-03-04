@@ -15,11 +15,14 @@ CREATE TABLE Locations (
 CREATE TABLE Quests (
 	questID int(11) AUTO_INCREMENT UNIQUE NOT NULL,
 	questName varchar(255) UNIQUE NOT NULL,
-	questLocation int NOT NULL,
+	questLocation int,
 	statRequired varchar(25) NOT NULL,
 	statMinimum int NOT NULL,
+	statBoostAmount int,
 	PRIMARY KEY (questID),
 	FOREIGN KEY (questLocation) REFERENCES Locations(locationID)
+		ON UPDATE CASCADE
+		ON DELETE SET NULL
 );
 
 CREATE TABLE Players (
@@ -27,15 +30,15 @@ CREATE TABLE Players (
 	playerName varchar(255) UNIQUE NOT NULL,
 	numberOfQuestsCompleted int DEFAULT 0,
 	currentQuest int,
-	currentLocationID int NOT NULL DEFAULT 0,
+	currentLocationID int DEFAULT 0,
 	playerHealth int DEFAULT 5,
 	playerMagic int DEFAULT 5,
 	strengthStat int DEFAULT 5,
 	intelligenceStat int DEFAULT 5,
 	defenceStat int DEFAULT 5,
 	PRIMARY KEY(playerID),
-	FOREIGN KEY(currentQuest) REFERENCES Quests(questID),
-	FOREIGN KEY(currentLocationID) REFERENCES Locations(locationID)
+	FOREIGN KEY(currentQuest) REFERENCES Quests(questID) ON UPDATE CASCADE ON DELETE SET NULL,
+	FOREIGN KEY(currentLocationID) REFERENCES Locations(locationID) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 CREATE TABLE Items (
@@ -43,28 +46,23 @@ CREATE TABLE Items (
 	itemName varchar(255) UNIQUE NOT NULL,
 	statBoosted varchar(25) NOT NULL,
 	statBoostAmount int NOT NULL,
-	questRewardedFrom int UNIQUE NOT NULL,
+	questRewardedFrom int UNIQUE,
 	PRIMARY KEY(itemID),
-	FOREIGN KEY(questRewardedFrom) REFERENCES Quests(questID)
+	FOREIGN KEY(questRewardedFrom) REFERENCES Quests(questID) ON UPDATE CASCADE ON DELETE SET NULL
 );
 
 CREATE TABLE PlayersItems (
 	playerID int NOT NULL,
 	itemID int NOT NULL,
-	FOREIGN KEY (playerID) REFERENCES Players(playerID),
-	FOREIGN KEY (itemID) REFERENCES Items(itemID)
+	FOREIGN KEY (playerID) REFERENCES Players(playerID) ON UPDATE CASCADE ON DELETE CASCADE,
+	FOREIGN KEY (itemID) REFERENCES Items(itemID) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
-
-INSERT INTO Players (playerID, playerName, numberOfQuestsCompleted, currentQuest, currentLocationID, playerHealth, playerMagic, strengthStat, intelligenceStat, defenceStat) VALUES
-(0, 'Default Player', 0, NULL, 0, 5, 5, 5, 5, 5),
-(1, 'Player 1', 2, 3, 1, 5, 5, 6, 5, 7),
-(2, 'Player 2', 1, 2, 3, 3, 5, 5, 5, 5);
-
-INSERT INTO Items (itemID, itemName, statBoosted, statBoostAmount, questRewardedFrom) VALUES
-(0, 'Defence Booster', 'defenceStat', 2, 1),
-(1, 'Strength +1', 'strengthStat', 1, 2),
-(2, 'Cursed Item', 'playerHealth', -2, 3);
+INSERT INTO Locations (locationID, locationName) VALUES
+(0, 'Starting Area'),
+(1, 'Location 1'),
+(2, 'Location 2'),
+(3, 'Location 3');
 
 INSERT INTO Quests (questID, questName, questLocation, statRequired, statMinimum) VALUES
 (0, 'Flavor Quest', 0, 'playerMagic', 0),
@@ -72,11 +70,15 @@ INSERT INTO Quests (questID, questName, questLocation, statRequired, statMinimum
 (2, 'Quest 2', 3, 'playerHealth', 5),
 (3, 'Quest 3', 1, 'defenceStat', 6);
 
-INSERT INTO Locations (locationID, locationName) VALUES
-(0, 'Starting Area'),
-(1, 'Location 1'),
-(2, 'Location 2'),
-(3, 'Location 3');
+INSERT INTO Items (itemID, itemName, statBoosted, statBoostAmount, questRewardedFrom) VALUES
+(0, 'Defence Booster', 'defenceStat', 2, 1),
+(1, 'Strength +1', 'strengthStat', 1, 2),
+(2, 'Cursed Item', 'playerHealth', -2, 3);
+
+INSERT INTO Players (playerID, playerName, numberOfQuestsCompleted, currentQuest, currentLocationID, playerHealth, playerMagic, strengthStat, intelligenceStat, defenceStat) VALUES
+(0, 'Default Player', 0, NULL, 0, 5, 5, 5, 5, 5),
+(1, 'Player 1', 2, 3, 1, 5, 5, 6, 5, 7),
+(2, 'Player 2', 1, 2, 3, 3, 5, 5, 5, 5);
 
 INSERT INTO PlayersItems (playerID, itemID) VALUES
 (1, 0),
