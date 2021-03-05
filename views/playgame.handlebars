@@ -3,7 +3,6 @@
         <title>Play Game</title>
         <link rel="stylesheet" type="text/css" href="mystyle.css">
         <link rel="stylesheet" href ="style.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
         <body>
         <h1 class="title">World of Databases</h1>
@@ -15,21 +14,8 @@
 		<a href="contentcreator.html" class="menu-button">Content Creator</a>
 	</div>
 
-        <p>Clicking edit will open a popout window with editing boxes *javascript</p>
-            <p>Hover for tooltips</p>
-        <button class="btn">Edit</button>
-        <div class="dropdown">
-          <button class="btn" style="border-left:1px solid navy">
-            <i class="fa fa-caret-down"></i>
-          </button>
-          <div class="dropdown-content">
-            <a href="#" title="Change LocationID of Player">Player</a>
-            <a href="#" title="Mark Quest as complete">Quests</a>
-
-            <a href="#">Items</a>
-          </div>
-        </div>
         <div class="smolDiv"></div>
+            
         <table id="myTable">
           <tr class="header">
               <tr>
@@ -37,16 +23,14 @@
                 <th>Location</th>
                 <th>Items</th>
               </tr>
-              <tr>
-                <td>Player 1</td>
-                <td>Location 1</td>
-                <td>Item 1</td>
-              </tr>
-              <tr>
-                <td>Player 2</td>
-                <td>Location 2</td>
-                <td>Item 2</td>
-              </tr>
+
+    {{#each players}}
+        <tr>
+            <td>{{playerName}}</td>
+            <td>{{locationName}}</td>
+            <td>{{itemName}}</td>
+        </tr>
+    {{/each}}
             </table>
             
             <div class="myDiv"></div>
@@ -57,17 +41,48 @@
                 <th>Location</th>
                 <th>Items</th>
               </tr>
-              <tr>
-                <td>Quest 1</td>
-                <td>Location 1</td>
-                <td>Item 1</td>
-              </tr>
-              <tr>
-                <td>Quest 2</td>
-                <td>Location 2</td>
-                <td>Item 2</td>
-              </tr>
+    {{#each quests}}
+        <tr>
+            <td>{{questName}}</td>
+            <td>{{locationName}}</td>
+            <td>{{itemName}}</td>
+        </tr>
+    {{/each}}
             </table>
+            
+            <div class="smolDiv"></div>
+            
+  <form name="form1" id="form1" action="/action_page.php">
+  Change Location: <select name="subject" id="subject">
+    {{#each locations}}
+      <option value = "{{locationID}}">{{locationName}}</option>
+      {{/each}}
+  </select>
+  <input type="submit" value="Submit">
+</form>
+            
+<div class="smolDiv"></div>
+            
+ <form name="form1" id="form1" action="/action_page.php">
+  Complete Quest: <select name="subject" id="subject">
+    {{#each questsdrop}}
+      <option value = "{{questID}}">{{questName}}</option>
+      {{/each}}
+  </select>
+  <input type="submit" value="Submit">
+</form>
+            
+ <div class="smolDiv"></div>
+            
+ <form name="form1" id="form1" action="/action_page.php">
+  Use Item: <select name="subject" id="subject">
+    {{#each items}}
+      <option value = "{{itemID}}">{{itemName}}</option>
+      {{/each}}
+  </select>
+  <input type="submit" value="Submit">
+</form>
+            
             
         </body>
 </html>

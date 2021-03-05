@@ -1,0 +1,52 @@
+.title {
+	background-color: Sienna;
+	color: white;
+	height: 100px;
+	font-size:48px;
+	line-height: 100px;
+	font-weight: bold;
+	padding-left: 10px;
+}
+
+.subtitle {
+	font-weight: bold;
+}
+
+.navigation-menu {
+	background-color: darkOliveGreen;
+    text-align: left;
+}
+
+.menu-button{
+	font-size: 28px;
+	color: white;
+	padding-right: 20px;
+	padding-left: 20px;
+	text-decoration: none;
+}
+
+.menu-button:hover{
+	background-color: oliveDrab;
+}
+
+.required, .warning-text{
+	color: red;
+}
+
+.warning-text, .form-text {
+	font-size: 18px;
+}
+
+form {
+	border: 1px solid black;
+	margin: auto;
+	max-width: 75%;
+}
+
+.form-header,.form-submit,input,label,select {
+	margin: 8px;
+}
+
+label {
+	font-size: 20px;
+}

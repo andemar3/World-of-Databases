@@ -1,35 +1,47 @@
 -- get all players, locations and items to populate the play game table
-SELECT playerName, currentLocationID, itemID FROM Players, PlayersItems;
+SELECT Players.playerName, Locations.locationName, Items.itemName FROM Players
+JOIN PlayersItems on PlayersItems.playerID = Players.playerID
+JOIN Locations on Locations.locationID = Players.currentLocationID
+JOIN Items on Items.itemID = PlayersItems.itemID;
 
 -- get all Quest, Location, Items to populate 2nd play game table
-SELECT questRewardedFrom, questLocation, itemName FROM Items, Quests WHERE Quests.questID = Items.questRewardedFrom;
+SELECT Quests.questName, Locations.locationName, Items.itemName FROM Quests
+JOIN Items on Items.questRewardedFrom = Quests.questID
+JOIN Locations on Locations.locationID = Quests.questLocation;
 
 -- get all Quest, Items for search tab
-SELECT questRewardedFrom, itemName FROM Items;
+SELECT Quests.questName, Items.itemName FROM Quests
+JOIN Items on Items.questRewardedFrom = Quests.questID;
 
 -- get all Players, Locations for search tab
-SELECT playerName, currentLocationID FROM Players;
+SELECT Players.playerName, Locations.locationName FROM Players
+JOIN Locations on Players.currentLocationID = Locations.locationID;
 
--- get locationID of current player for edit dropdown
--- somehow need a current_playerID
-SELECT currentLocationID, FROM Players WHERE playerID = {{current_playerID}};
+-- get locationName for edit dropdown
+SELECT Locations.locationName FROM Locations
+JOIN Players on Players.currentLocationID = Locations.locationID
 
 -- get quest of current player for edit dropdown
-SELECT currentQuest FROM Players WHERE playerID = {{current_playerID}};
+SELECT Quests.questName FROM Quests
+JOIN Players on Players.currentQuest = Quests.questID;
 
 -- get items of current player for edit dropdown
-SELECT itemID FROM PlayersItems where playerID = {{current_playerID}};
+SELECT Items.itemName FROM Items
+JOIN PlayersItems on PlayersItems.playerID = Players.playerID
+JOIN Items on Items.itemID = PlayersItems.itemID;
 
 -- update/change location of current player
--- somehow make a newLocationID?
 UPDATE Players SET {{currentLocationID}} = {{newLocationID}} WHERE playerID = {{current_playerID}};
 
 -- update to mark quest as complete
 UPDATE Players SET numberofQuestsCompleted = numberofQuestsCompleted + 1 WHERE playerID = {{current_playerID}};
-UPDATE Players SET currentQuest = 0 WHERE playerID = current_playerID;
+UPDATE Players SET currentQuest = NULL WHERE playerID = {{current_playerID}};
 -- update to use items and add to player stats
--- trying to use the varible inside statBoosted ex. 'playerHealth'
-UPDATE Players SET Players.statBoosted = Players.statBoosted + PlayerItems.statBoostAmount WHERE playerID = {{current_playerID}};
+UPDATE Players SET Players.playerHealth = Players.playerHealth + Items.statBoostAmount WHERE playerID = {{current_playerID}};
+UPDATE Players SET Players.playerMagic = Players.playerMagic + Items.statBoostAmount WHERE playerID = {{current_playerID}};
+UPDATE Players SET Players.strengthStat = Players.strengthStat + Items.statBoostAmount WHERE playerID = {{current_playerID}};
+UPDATE Players SET Players.intelligenceStat = Players.intelligenceStat + Items.statBoostAmount WHERE playerID = {{current_playerID}};
+UPDATE Players SET Players.defenceStat = Players.defenceStat + Items.statBoostAmount WHERE playerID = {{current_playerID}};
 
 -- delete selected Player
 DELETE Players WHERE playerID = {{selected_playerID}};

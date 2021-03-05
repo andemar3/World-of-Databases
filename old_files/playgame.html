@@ -3,7 +3,6 @@
         <title>Play Game</title>
         <link rel="stylesheet" type="text/css" href="mystyle.css">
         <link rel="stylesheet" href ="style.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
         <body>
         <h1 class="title">World of Databases</h1>
@@ -15,58 +14,8 @@
 		<a href="contentcreator.html" class="menu-button">Content Creator</a>
 	</div>
 
-        <p>Clicking edit will open a popout window with editing boxes *javascript</p>
-            <p>Hover for tooltips</p>
-        <button class="btn">Edit</button>
-        <div class="dropdown">
-          <button class="btn" style="border-left:1px solid navy">
-            <i class="fa fa-caret-down"></i>
-          </button>
-          <div class="dropdown-content">
-            <a href="#" title="Change LocationID of Player">Player</a>
-            <a href="#" title="Mark Quest as complete">Quests</a>
-
-            <a href="#">Items</a>
-          </div>
-        </div>
         <div class="smolDiv"></div>
             
-   <!--   This is an example i have been trying to get working      
-  <div class="table">
-<h2>Display Data using Node.js & MySQL</h2>
-    <table border="1">
-        <tr>
-            <th>S.N</th>
-            <th>Full Name</th>
-            <th>Email Address</th>
-            <th>City</th>
-            <th>Country</th>
-            <th>Edit</th>
-            <th>Delete</th>
-        </tr>
-        
-        <%
-        if(result.length!=0){
-        var i=1;
-        result.forEach(function(data){
-        %>
-        <tr>
-            <td><%=i; %></td>
-            <td><%=data.fullName %></td>
-            <td><%=data.emailAddress %></td>
-            <td><%=data.city %></td>
-            <td><%=data.country %></td>
-            <td><a href="/users/edit/<%=data.id%>">Edit</a></td>
-            <td><a href="/users/delete/<%=data.id%>">Delete</a></td>
-        </tr>
-        <%  i++; }) %>
-        <% } else{ %>
-            <tr>
-                <td colspan="7">No Data Found</td>
-            </tr>
-        <% } %>
-    </table>
--->
         <table id="myTable">
           <tr class="header">
               <tr>
@@ -105,6 +54,40 @@
                 <td>Item 2</td>
               </tr>
             </table>
+            
+            <div class="smolDiv"></div>
+            
+  <form name="form1" id="form1" action="/action_page.php">
+  Change Location: <select name="subject" id="subject">
+    <option value="" selected="selected">Current Location</option>
+      <option value = "location1">Location 1</option>
+      <option value = "location2">Location 2</option>
+  </select>
+  <input type="submit" value="Submit">
+</form>
+            
+<div class="smolDiv"></div>
+            
+ <form name="form1" id="form1" action="/action_page.php">
+  Complete Quest: <select name="subject" id="subject">
+    <option value="" selected="selected">Quest 1</option>
+      <option value = "quest2">Quest 2</option>
+      <option value = "quest3">Quest 3</option>
+  </select>
+  <input type="submit" value="Submit">
+</form>
+            
+ <div class="smolDiv"></div>
+            
+ <form name="form1" id="form1" action="/action_page.php">
+  Use Item: <select name="subject" id="subject">
+    <option value="" selected="selected">Item 1</option>
+      <option value = "item2">Item 2</option>
+      <option value = "item3">Item 3</option>
+  </select>
+  <input type="submit" value="Submit">
+</form>
+            
             
         </body>
 </html>
