@@ -44,8 +44,11 @@ UPDATE Players SET Players.intelligenceStat = Players.intelligenceStat + Items.s
 UPDATE Players SET Players.defenceStat = Players.defenceStat + Items.statBoostAmount WHERE playerID = {{current_playerID}};
 
 -- delete selected Player
-DELETE Players WHERE playerID = {{selected_playerID}};
-DELETE PlayersItems WHERE playerID = {{selected_playerID}};
+DELETE FROM Players WHERE playerID = {{selected_playerID}};
+DELETE FROM PlayersItems WHERE playerID = {{selected_playerID}} AND itemID = {{selected_itemID}};
+DELETE FROM Items WHERE itemID = {{selected_itemID}};
+DELETE FROM Locations WHERE locationID = {{selected_locationID}};
+DELETE FROM Quests WHERE questID = {{selected_questID}};
 
 --INSERT queries for making new entries
 INSERT INTO Players (playerName) VALUES ({{new_playerName}});
