@@ -9,3 +9,21 @@ function deletePlayer(){
         }
     })
 };
+
+
+function deletePlayerItem(playerID){
+	var selection = document.getElementById("playerItemDelete" + playerID);
+	var itemID = selection.value
+	$.ajax({
+		url: '/playermanager/playerID/' + playerID + '/itemID/' + itemID,
+		type: 'DELETE',
+		success: function(result){
+			if(result.responseText != undefined){
+				alert(result.responseText)
+			}
+			else {
+				window.location.reload(true)
+			} 
+		}
+	})
+};
