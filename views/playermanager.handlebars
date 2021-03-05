@@ -20,7 +20,7 @@
 	<div class="player-delete">
 			<h3 class="form-header">Delete a Player</h3>
 			<p class="warning-text">Deleting a player will remove all player data including records of what items the player owned. This data cannot be retrieved once deleted. This should only be used when a player ban has been issued or a player requests a data deletion.</p>
-			<label for="player-id">Player Name<span class="required">*</span></label>
+			<label for="playerDelete">Player Name<span class="required">*</span></label>
 			<select id = "playerDelete" name="playerDelete">
 			<!--list each Player from database-->
 			{{#each players}}
@@ -28,8 +28,31 @@
 			{{/each}}
 			</select>
 			<br/>
-			<button onclick="deletePlayer({{playerID}})">Delete</button>
+			<button onclick="deletePlayer()">Delete</button>
 	</div>
+	<div class="playersitems-delete">
+		<h3 class="form-header">Remove an Item</h3>
+		<table>
+			<thead> 
+				<th>Players</th> 
+				<th>Items</th> 
+			</thead>
+			<tbody>
+				{{#each players}}
+				<tr>
+					<td>{{playerName}}</td>
+					<td>
+						<select id = "playerItemDelete{{playerID}}" name="playerItemDelete{{playerID}}">
+						{{#each items}}
+						<option value="{{itemID}}">{{itemName}}</option>
+						{{/each}}
+						</select>
+						<button onclick="deletePlayerItem({{playerID}})">Delete</button>
+					</td>
+				</tr>
+				{{/each}}
+			</tbody>
+		</table>
 	<br/>
   </body>
 </html>

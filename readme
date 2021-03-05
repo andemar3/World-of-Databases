@@ -2,4 +2,5 @@ To Run:
 
 1. edit dbcon with your info
 2. install node.js with "npm install"
-3. run "node main.js [port #]"
+3. be on the OSU network or connect with a VPN
+4. run "node main.js [port #]"
