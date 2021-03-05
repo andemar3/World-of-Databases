@@ -68,6 +68,7 @@ module.exports = function(){
         });
     }*/
 	
+	//get Players and Items for dropdowns
 	function getPlayersItems(res, mysql, context, complete){
 
 		mysql.pool.query("SELECT playerID, playerName FROM Players", function(error, results, fields){

@@ -3,7 +3,7 @@
   <head>
     <title>Content Creator</title>
     <link rel="stylesheet" href ="style.css">
-	<script src="/js/placeholder.js"></script>
+	<script src="/static/deleteContent.js"></script>
   </head>
   <body>
 
@@ -28,9 +28,10 @@
 			<label for="questLocation">Location of Quest<span class="required">*</span></label>
 			<br/>
             <select name = "questLocation">
+			<option value="NULL">NULL</option>
 			<!--list each Location from database-->
 			{{#each locations}}
-			<option value="{{id}}">{{locationName}}</option>
+			<option value="{{locationID}}">{{locationName}}</option>
 			{{/each}}
 			</select>
 			<br/>
@@ -62,9 +63,10 @@
 			<label for="questRewardedFrom">Quest Rewarded From<span class="required">*</span></label>
 			<br/>
             <select name = "questRewardedFrom">
+			<option value="NULL">NULL</option>
 			<!--list each Quest from database-->
 			{{#each quests}}
-			<option value="{{id}}">{{questName}}</option>
+			<option value="{{questID}}">{{questName}}</option>
 			{{/each}}
 			</select>
 			<br/>
@@ -86,5 +88,44 @@
 		</form>
     </div>
 	<br/>
+	<div class="location-delete">
+			<h3 class="form-header">Delete a Location</h3>
+			<p class="warning-text">Deleting a location will change the location of all players and quests currently at the location to NULL. Players and quests will have to have new location values set. This data cannot be retrieved once deleted.</p>
+			<label for="locationDelete">Location Name<span class="required">*</span></label>
+			<select id = "locationDelete" name="locationDelete">
+			<!--list each Location from database-->
+			{{#each locations}}
+			<option value="{{locationID}}">{{locationName}}</option>
+			{{/each}}
+			</select>
+			<br/>
+			<button onclick="deleteLocation()">Delete</button>
+	</div>
+	<div class="quest-delete">
+			<h3 class="form-header">Delete a Quest</h3>
+			<p class="warning-text">Deleting a quest will set it to NULL for any player who is currently on the quest and the item rewarded from the quest. Players and items will have to have new quests set. This data cannot be retrieved once deleted.</p>
+			<label for="questDelete">Quest Name<span class="required">*</span></label>
+			<select id = "questDelete" name="questDelete">
+			<!--list each Quest from database-->
+			{{#each quests}}
+			<option value="{{questID}}">{{questName}}</option>
+			{{/each}}
+			</select>
+			<br/>
+			<button onclick="deleteQuest()">Delete</button>
+	</div>
+	<div class="item-delete">
+			<h3 class="form-header">Delete an Item</h3>
+			<p class="warning-text">Deleting an item will remove it from the quest it is rewarded from and any player's inventory. Players and items will have to have new quests set. This data cannot be retrieved once deleted.</p>
+			<label for="itemDelete">Item Name<span class="required">*</span></label>
+			<select id = "itemDelete" name="itemDelete">
+			<!--list each Item from database-->
+			{{#each items}}
+			<option value="{{itemID}}">{{itemName}}</option>
+			{{/each}}
+			</select>
+			<br/>
+			<button onclick="deleteItem()">Delete</button>
+	</div>
   </body>
 </html>
