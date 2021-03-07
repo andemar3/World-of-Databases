@@ -41,6 +41,7 @@ module.exports = function(){
         });
     }
 
+
 //renders initial page view
 router.get('/', function(req, res){
     var callbackCount = 0;
