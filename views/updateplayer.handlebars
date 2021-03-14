@@ -1,0 +1,83 @@
+<html>
+    <head>
+    <title>Update</title>
+        <link rel="stylesheet" type="text/css" href="../mystyle.css">
+        <link rel="stylesheet" href ="../style.css">
+    </head>
+    <body>
+        
+        <script>console.log(context);</script>
+
+<h1>Update {{Players.playerName}}</h1>
+
+<table id="myTable">
+ <thead>
+    <tr>
+         <th>Current Location</th>
+         <td>{{locationName}}</td>
+     </tr>
+    <tr>
+         <th>Current Quest</th>
+     </tr>
+    <tr>
+         <th>Items</th>
+     </tr>
+    <tr>
+         <th>Add Quest</th>
+     </tr>
+     <tr>
+         <th>Quests Completed</th>
+     </tr>
+    <tr>
+         <th>Health</th>
+     </tr>
+    <tr>
+         <th>Magic</th>
+     </tr>
+    <tr>
+         <th>Strength</th>
+     </tr>
+    <tr>
+         <th>Intelligence</th>
+     </tr>
+    <tr>
+         <th>Defence</th>
+     </tr>
+ </thead>
+</table>
+
+  <form id="update-location" action="/playgame/location" method="post">
+  Change Location: <select name="subject" id="subject">
+    {{#each locations}}
+      <option value = "{{locationID}}">{{locationName}}</option>
+      {{/each}}
+  </select>
+  <button onclick="updatelocation({{Players.playerID}})">Update</button>
+</form>
+
+
+<div class="smolDiv"></div>
+            
+ <form name="form1" id="form1" action="/action_page.php">
+  Complete Quest: <select name="subject" id="subject">
+    {{#each questsdrop}}
+      <option value = "{{questID}}">{{questName}}</option>
+      {{/each}}
+  </select>
+  <input type="submit" value="Submit">
+</form>
+
+            
+ <div class="smolDiv"></div>
+            
+ <form name="form1" id="form1" action="/action_page.php">
+  Use Item: <select name="subject" id="subject">
+    {{#each items}}
+      <option value = "{{itemID}}">{{itemName}}</option>
+      {{/each}}
+  </select>
+  <input type="submit" value="Submit">
+</form>
+
+    </body>
+</html>
