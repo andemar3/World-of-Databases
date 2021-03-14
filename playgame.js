@@ -14,7 +14,7 @@ module.exports = function(){
                 res.end();
             }
             context.players = results;
-            console.log(context);
+       //     console.log(context);
             complete();
         });
     }
@@ -67,6 +67,7 @@ module.exports = function(){
     //update data
 function getPlayer(res, mysql, context, playerID, complete){
     var sql = "SELECT playerID, playerName, numberofQuestsCompleted, currentQuest, currentLocationID, playerHealth, playerMagic, strengthStat, intelligenceStat, defenceStat FROM Players WHERE playerID = ?";
+	console.log(playerID);
     var inserts = [playerID];
     mysql.pool.query(sql, inserts, function(error, results, fields){
         if(error){
@@ -74,7 +75,7 @@ function getPlayer(res, mysql, context, playerID, complete){
             res.end();
         }
         context.player = results;
-        console.log(context);
+        console.log(context.player);
         complete();
     });
 }
@@ -108,7 +109,7 @@ function getPlayer(res, mysql, context, playerID, complete){
         function complete(){
             callbackCount++;
             if(callbackCount >= 3){
-                console.log(context);
+        //        console.log(context);
                 res.render('updateplayer', context);
             }
         }
@@ -129,7 +130,7 @@ function getPlayer(res, mysql, context, playerID, complete){
        function complete(){
            callbackCount++;
            if(callbackCount >= 2){
-               console.log(context);
+        //       console.log(context);
                res.render('playgame', context);
            }
        }
