@@ -13,16 +13,18 @@
     <tr>
          <th>Current Location</th>
          <td>{{player.locationName}}</td>
-         <td><form id="update-location" action="/playgame" method="post">
-  Change Location: <select name="change-location" id="location-selector">
-    {{#each locations}}
-      <option value = "{{locationID}}">{{locationName}}</option>
-      {{/each}}
-  </select>
-  <button onclick="updatelocation({{player.playerID}})">Submit</button>
-  <script defer>selection({{player.currentlocationID}});</script>
-
-</form></td>
+         <td>
+             <form id="update-location" action="/playgame" method="post">
+                Change Location: <select name="change-location" id="location-selector">
+                {{#each locations}}
+                <option value = "{{locationID}}">{{locationName}}</option>
+                {{/each}}
+                </select>
+                </form>
+  <button onclick="updatelocation({{player.currentlocationID}})">Submit</button>
+  <script defer>selectionlocation({{player.currentlocationID}});</script>
+    
+</td>
      </tr>
     <tr>
          <th>Current Quest</th>

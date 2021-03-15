@@ -1,4 +1,4 @@
-function updatePlayer(playerID){
+function updatelocation(playerID){
     //var selection = document.getElementById("update-location");
 	//var locationID = selection.value;
     $.ajax({
@@ -6,7 +6,7 @@ function updatePlayer(playerID){
         type: 'PUT',
         data: $('#update-location').serialize(),
         success: function(result){
-            window.location.replace("./");
+            window.location.reload(true);
         }
     })
 };
