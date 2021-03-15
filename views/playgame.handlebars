@@ -13,6 +13,7 @@
                 <th>Player</th>
                 <th>Location</th>
                 <th>Items</th>
+                <th>Quests</th>
               </tr>
 
     {{#each players}}
@@ -20,60 +21,11 @@
             <td>{{playerName}}</td>
             <td>{{locationName}}</td>
             <td>{{itemName}}</td>
-        </tr>
-    {{/each}}
-            </table>
-            
-            <div class="myDiv"></div>
-            <table id="myTable">
-          <tr class="header">
-              <tr>
-                <th>Quest</th>
-                <th>Location</th>
-                <th>Items</th>
-              </tr>
-    {{#each quests}}
-        <tr>
             <td>{{questName}}</td>
-            <td>{{locationName}}</td>
-            <td>{{itemName}}</td>
+            <td><a href="/playgame/{{playerID}}">Update</a></td>
         </tr>
     {{/each}}
             </table>
-            
-            <div class="smolDiv"></div>
-            
-  <form name="form1" id="form1" action="/action_page.php">
-  Change Location: <select name="subject" id="subject">
-    {{#each locations}}
-      <option value = "{{locationID}}">{{locationName}}</option>
-      {{/each}}
-  </select>
-  <input type="submit" value="Submit">
-</form>
-            
-<div class="smolDiv"></div>
-            
- <form name="form1" id="form1" action="/action_page.php">
-  Complete Quest: <select name="subject" id="subject">
-    {{#each questsdrop}}
-      <option value = "{{questID}}">{{questName}}</option>
-      {{/each}}
-  </select>
-  <input type="submit" value="Submit">
-</form>
-            
- <div class="smolDiv"></div>
-            
- <form name="form1" id="form1" action="/action_page.php">
-  Use Item: <select name="subject" id="subject">
-    {{#each items}}
-      <option value = "{{itemID}}">{{itemName}}</option>
-      {{/each}}
-  </select>
-  <input type="submit" value="Submit">
-</form>
-            
-            
+                    
         </body>
 </html>

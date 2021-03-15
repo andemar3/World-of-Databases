@@ -1,6 +1,6 @@
 function updatePlayer(playerID){
-    var selection = document.getElementById("update-location");
-	var locationID = selection.value;
+    //var selection = document.getElementById("update-location");
+	//var locationID = selection.value;
     $.ajax({
         url: '/playgame/' + playerID,
         type: 'PUT',
