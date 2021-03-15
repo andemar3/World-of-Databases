@@ -1,3 +1,3 @@
-  function selectlocation(currentlocationID){
-    $("#location-selector").val(currentlocationID);
+  function selectlocation(id){
+    $("#location-selector").val(id);
 }
