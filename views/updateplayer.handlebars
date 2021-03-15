@@ -12,7 +12,7 @@
  <thead>
     <tr>
          <th>Current Location</th>
-         <td>{{player.locationName}}</td>
+         <td>{{playerLocation.locationName}}</td>
          <td>
              <form id="update-location" action="/playgame" method="post">
                 Change Location: <select name="change-location" id="location-selector">
@@ -28,11 +28,11 @@
      </tr>
     <tr>
          <th>Current Quest</th>
-         <td>{{player.questName}}</td>
+         <td>{{playerQuest.questName}}</td>
                   <td>
               <form name="form1" id="form1" action="/action_page.php">
   Complete Quest: <select name="subject" id="subject">
-      <option value = "{{player.questID}}">{{player.questName}}</option>
+      <option value = "{{playerQuest.questID}}">{{playerQuest.questName}}</option>
   </select>
   <input type="submit" value="Submit">
 </form>
@@ -40,11 +40,17 @@
      </tr>
     <tr>
          <th>Items</th>
-         <td>{{player.itemName}}</td>
+		 <td>
+		 {{#each playerItems}}
+         {{itemName}}
+		 {{/each}}
+		 </td>
          <td>
               <form name="form1" id="form1" action="/action_page.php">
   Use Item: <select name="subject" id="subject">
-      <option value = "{{player.itemID}}">{{player.itemName}}</option>
+	  {{#each playerItems}}
+      <option value = "{{itemID}}">{{itemName}}</option>
+	  {{/each}}
   </select>
   <input type="submit" value="Submit">
 </form>
