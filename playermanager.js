@@ -4,7 +4,7 @@ module.exports = function(){
 
 //handles create player form
 	router.post('/', function(req, res){
-        console.log(req.body)
+        console.log(req.body);
         var mysql = req.app.get('mysql');
         var sql = "INSERT INTO Players (playerName) VALUES (?)";
 		var context = {};
@@ -28,7 +28,7 @@ module.exports = function(){
         var inserts = [req.params.playerID];
         sql = mysql.pool.query(sql, inserts, function(error, results, fields){
             if(error){
-                console.log(error)
+                console.log(error);
                 res.write(JSON.stringify(error));
                 res.status(400);
                 res.end();
@@ -45,7 +45,7 @@ module.exports = function(){
         var inserts = [req.params.playerID, req.params.itemID];
         sql = mysql.pool.query(sql, inserts, function(error, results, fields){
             if(error){
-                console.log(error)
+                console.log(error);
                 res.write(JSON.stringify(error));
                 res.status(400);
                 res.end();
@@ -76,9 +76,9 @@ module.exports = function(){
                 res.write(JSON.stringify(error));
                 res.end();
             }
+			var done = 0;
             context.players  = results;
 			for (let i = 0; i < context.players.length; i++){
-				console.log(i);
 				var sql = "SELECT Items.itemID, Items.itemName FROM (PlayersItems JOIN Items ON PlayersItems.itemID = Items.itemID) WHERE PlayersItems.playerID = ?"
 				var insert = context.players[i].playerID;
 				mysql.pool.query(sql,insert,function(error, results, fields){
@@ -87,11 +87,13 @@ module.exports = function(){
                 res.end();
             }
 					context.players[i].items = results;
-					console.log(context.players[i].items);
+					done++;
+					if(done >= context.players.length){
+						complete();
+					}
+					
 				});
 			}
-			console.log(context);
-			complete();
 		});
 	}
 	

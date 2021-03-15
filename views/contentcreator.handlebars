@@ -2,7 +2,6 @@
 <html>
   <head>
     <title>Content Creator</title>
-    <link rel="stylesheet" href ="style.css">
 	<script src="/static/deleteContent.js"></script>
   </head>
   <body>
@@ -60,12 +59,12 @@
 			<br/>
             <input type="text" id="itemName" name="itemName" placeholder="Item Name" required>
 			<br/>
-			<label for="questRewardedFrom">Quest Rewarded From<span class="required">*</span></label>
+			<label for="questRewardedFrom">Quest Rewarded From (Only lists Quests without Items)<span class="required">*</span></label>
 			<br/>
             <select name = "questRewardedFrom">
 			<option value="NULL">NULL</option>
 			<!--list each Quest from database-->
-			{{#each quests}}
+			{{#each itemlessQuests}}
 			<option value="{{questID}}">{{questName}}</option>
 			{{/each}}
 			</select>

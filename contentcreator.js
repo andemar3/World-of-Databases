@@ -26,6 +26,18 @@ module.exports = function(){
         });
     }
 	
+	function getItemlessQuests(res, mysql, context, complete){
+		mysql.pool.query("SELECT Quests.questID, Quests.questName FROM Quests WHERE Quests.questID NOT IN (SELECT Items.questRewardedFrom FROM Items JOIN Quests ON Quests.questID = Items.questRewardedFrom)", function(error, results, fields){
+            if(error){
+                res.write(JSON.stringify(error));
+                res.end();
+            }
+            context.itemlessQuests  = results;
+			console.log(context.itemlessQuests);	
+            complete();
+        });
+    }
+	
 //get all Items
 	function getItems(res, mysql, context, complete){
 		mysql.pool.query("SELECT itemID, itemName FROM Items", function(error, results, fields){
@@ -157,11 +169,12 @@ module.exports = function(){
         getLocations(res, mysql, context, complete);
         getQuests(res, mysql, context, complete);
 		getItems(res, mysql, context, complete);
+		getItemlessQuests(res, mysql, context, complete);
 
 		//render page when getLocations and getQuests have finished
         function complete(){
             callbackCount++;
-            if(callbackCount >= 3){
+            if(callbackCount >= 4){
 				console.log(context);
                 res.render('contentcreator', context);
             }
