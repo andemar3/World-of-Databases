@@ -6,12 +6,14 @@ DROP TABLE IF EXISTS Items;
 DROP TABLE IF EXISTS PlayersItems;
 SET FOREIGN_KEY_CHECKS = 1;
 
+-- Create Locations --
 CREATE TABLE Locations (
 	locationID int(11) AUTO_INCREMENT UNIQUE NOT NULL,
 	locationName varchar(255) UNIQUE NOT NULL,
 	PRIMARY KEY (locationID)
 );
 
+-- Create Quests --
 CREATE TABLE Quests (
 	questID int(11) AUTO_INCREMENT UNIQUE NOT NULL,
 	questName varchar(255) UNIQUE NOT NULL,
@@ -25,6 +27,7 @@ CREATE TABLE Quests (
 		ON DELETE SET NULL
 );
 
+-- Create Players --
 CREATE TABLE Players (
 	playerID int(11) AUTO_INCREMENT NOT NULL,
 	playerName varchar(255) UNIQUE NOT NULL,
@@ -40,6 +43,7 @@ CREATE TABLE Players (
 	FOREIGN KEY(currentLocationID) REFERENCES Locations(locationID) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
+-- Create Items --
 CREATE TABLE Items (
 	itemID int(11) AUTO_INCREMENT UNIQUE NOT NULL,
 	itemName varchar(255) UNIQUE NOT NULL,
@@ -50,6 +54,7 @@ CREATE TABLE Items (
 	FOREIGN KEY(questRewardedFrom) REFERENCES Quests(questID) ON UPDATE CASCADE ON DELETE SET NULL
 );
 
+-- Create PlayersItems --
 CREATE TABLE PlayersItems (
 	playerID int NOT NULL,
 	itemID int NOT NULL,
