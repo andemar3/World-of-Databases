@@ -2,20 +2,18 @@
     <head>
         <title>Search</title>
         <link rel="stylesheet" type="text/css" href="mystyle.css">
-        <link rel="stylesheet" href ="style.css">
     </head>
     <body>
-            <p>Hover over table entries for tooltips</p>
+	<p> Quests with reward Items
         <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Filter by Quest..">
         <table id="myTable">
           <tr class="header">
             <th style="width:60%;">Quest</th>
             <th style="width:40%;">Items</th>
           </tr>
-
           {{#each quests}}
           <tr>
-            <td title="Click to add quest!">{{questName}}</td>
+            <td>{{questName}}</td>
             <td>{{itemName}}</td>
           </tr>
           {{/each}}

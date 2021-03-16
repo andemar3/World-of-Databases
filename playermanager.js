@@ -8,6 +8,8 @@ module.exports = function(){
         var mysql = req.app.get('mysql');
         var sql = "INSERT INTO Players (playerName) VALUES (?)";
 		var context = {};
+		context.jsscripts = ["deletePlayers.js"];
+		var callbackCount = 0;
         var inserts = [req.body.playerName];
         sql = mysql.pool.query(sql,inserts,function(error, results, fields){
             if(error){
@@ -15,9 +17,16 @@ module.exports = function(){
                 res.write(JSON.stringify(error));
                 res.end();
             }else{
-				context.message = ["New player created!"];
-                res.render('playermanager', context)
-            }
+				getPlayersItems(res, mysql, context, complete);
+				//render page when getPlayers has finished
+				function complete(){
+					callbackCount++;
+					if(callbackCount >= 1){
+					context.message = ["New player created!"]
+					res.render('playermanager', context);
+					}
+				}
+			}
         });
     });
 	
