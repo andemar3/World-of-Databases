@@ -17,7 +17,18 @@ function completequest(playerID){
         type: 'PUT',
         data: $('#complete-quest').serialize(),
         success: function(result){
-            window.location.replace("./");
+            window.location.reload(true);
+        }
+    })
+};
+
+function addquest(playerID){
+    $.ajax({
+        url: '/playgame/addquest/' + playerID,
+        type: 'PUT',
+        data: $('#add-quest').serialize(),
+        success: function(result){
+            window.location.reload(true);
         }
     })
 };
