@@ -143,6 +143,24 @@ function getPlayerItems(res, mysql, context, playerID, complete){
 		});
 	});
 
+    router.put('/addquest/:playerID', function(req, res){
+        var mysql = req.app.get('mysql');
+        var sql = "UPDATE Players SET currentQuest = ? WHERE playerID =?";
+        var inserts = [req.body.currentQuest, req.params.playerID];
+		console.log(req.params);
+		console.log(req.body);
+        sql = mysql.pool.query(sql, inserts, function(error, results, fields){
+            if(error){
+                console.log(error);
+                res.write(JSON.stringify(error));
+                res.end();
+            }else{
+                res.status(200);
+                res.end();
+            }
+        });
+    });
+
 //render player handlebars page
     router.get('/:playerID', function(req, res){
         var callbackCount = 0;

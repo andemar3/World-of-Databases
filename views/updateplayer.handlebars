@@ -22,7 +22,6 @@
     </select><br>
 </form>
 <button onclick="updatelocation({{player.playerID}})">Update</button>
-<script defer>selectlocation({{player.currentLocationID}});</script>
   </td>
      </tr>
     <tr>
@@ -45,14 +44,16 @@
     <tr>
          <th>Add Quest</th>
                 <td>
-              <form name="form1" id="form1" action="/action_page.php">
-  Add Quest: <select name="subject" id="subject">
+
+
+<form id="add-quest" action="/playgame/addquest" method="post">
+    Add Quest: <select name="currentQuest" id="quest-selector"> 
     {{#each quests}}
       <option value = "{{questID}}">{{questName}}</option>
       {{/each}}
-  </select>
-  <input type="submit" value="Submit">
+    </select><br>
 </form>
+<button onclick="addquest({{player.playerID}})">Update</button>
          </td>
      </tr>
     <tr>
