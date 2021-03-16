@@ -104,7 +104,7 @@ function getPlayerItems(res, mysql, context, playerID, complete){
 	router.put('/:playerID', function(req, res){
         var mysql = req.app.get('mysql');
         var sql = "UPDATE Players SET currentLocationID =? WHERE playerID =?";
-        var inserts = [req.body.currentLocationID, req.params.playerID];
+        var inserts = [req.body.currentlocation, req.params.playerID];
         sql = mysql.pool.query(sql, inserts, function(error, results, fields){
             if(error){
                 console.log(error);
