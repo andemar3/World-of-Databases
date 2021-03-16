@@ -10,3 +10,14 @@ function updatelocation(playerID){
         }
     })
 };
+
+function completequest(playerID){
+    $.ajax({
+        url: '/playgame/completequest/' + playerID,
+        type: 'PUT',
+        data: $('#complete-quest').serialize(),
+        success: function(result){
+            window.location.replace("./");
+        }
+    })
+};

@@ -28,33 +28,20 @@
     <tr>
          <th>Current Quest</th>
          <td>{{playerQuest.questName}}</td>
-                  <td>
-              <form name="form1" id="form1" action="/action_page.php">
-  Complete Quest: <select name="subject" id="subject">
-      <option value = "{{playerQuest.questID}}">{{playerQuest.questName}}</option>
-  </select>
-  <input type="submit" value="Submit">
-</form>
+         <td>
+			Complete quest and add reward item to inventory
+			</br>
+			<button onclick="completequest({{player.playerID}})">Complete Quest</button>
          </td>
      </tr>
     <tr>
          <th>Items</th>
 		 <td>
 		 {{#each playerItems}}
-         {{itemName}}
+         {{itemName}} </br>
 		 {{/each}}
 		 </td>
-         <td>
-              <form name="form1" id="form1" action="/action_page.php">
-  Use Item: <select name="subject" id="subject">
-	  {{#each playerItems}}
-      <option value = "{{itemID}}">{{itemName}}</option>
-	  {{/each}}
-  </select>
-  <input type="submit" value="Submit">
-</form>
-         </td>
-     </tr>
+    </tr>
     <tr>
          <th>Add Quest</th>
                 <td>

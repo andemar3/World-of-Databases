@@ -52,7 +52,6 @@ function getPlayer(res, mysql, context, playerID, complete){
             res.end();
         }
         context.player = results[0];
-        console.log(context.player);
         complete();
     });
 }
@@ -88,7 +87,6 @@ function getPlayerQuest(res, mysql, context, playerID, complete){
 
 function getPlayerItems(res, mysql, context, playerID, complete){
     var sql = "SELECT Items.itemName, Items.itemID FROM Items JOIN PlayersItems ON Items.itemID = PlayersItems.itemID JOIN Players ON Players.playerID = PlayersItems.playerID WHERE Players.playerID = ? ";
-	console.log(playerID);
     var inserts = [playerID];
     mysql.pool.query(sql, inserts, function(error, results, fields){
         if(error){
@@ -96,7 +94,6 @@ function getPlayerItems(res, mysql, context, playerID, complete){
             res.end();
         }
         context.playerItems = results;
-        console.log(context.playerItems);
         complete();
     });
 }
@@ -105,18 +102,46 @@ function getPlayerItems(res, mysql, context, playerID, complete){
         var mysql = req.app.get('mysql');
         var sql = "UPDATE Players SET currentLocationID =? WHERE playerID =?";
         var inserts = [req.body.currentlocation, req.params.playerID];
+		console.log(req.params);
+		console.log(req.body);
         sql = mysql.pool.query(sql, inserts, function(error, results, fields){
             if(error){
                 console.log(error);
                 res.write(JSON.stringify(error));
                 res.end();
             }else{
-                console.log(inserts);
                 res.status(200);
                 res.end();
             }
         });
     });
+	
+	router.put('/completequest/:playerID', function(req, res){
+        var mysql = req.app.get('mysql');7
+        console.log(req.body);
+        console.log(req.params);
+		var sql = "INSERT INTO PlayersItems SELECT Players.playerID, Items.itemID FROM Players JOIN Quests ON Players.currentQuest = Quests.questID JOIN Items ON Items.questRewardedFrom = Quests.questID WHERE Players.playerID = ?";
+		var inserts = [req.params.playerID]
+		sql = mysql.pool.query(sql, inserts, function(error, results, fields){
+            if(error){
+                console.log(error);
+                res.write(JSON.stringify(error));
+                res.end();
+            }else{
+				var sql2 = "UPDATE Players SET currentQuest = NULL WHERE playerID = ?"
+				sql2 = mysql.pool.query(sql2, inserts, function(error, results, fields){
+				if(error){
+					console.log(error);
+					res.write(JSON.stringify(error));
+					res.end();
+				}else{
+					res.status(200);
+					res.end();
+				}
+            });
+			}
+		});
+	});
 
 //render player handlebars page
     router.get('/:playerID', function(req, res){
@@ -133,7 +158,6 @@ function getPlayerItems(res, mysql, context, playerID, complete){
         function complete(){
             callbackCount++;
             if(callbackCount >= 6){
-                console.log(context);
                 res.render('updateplayer', context);
             }
         }
