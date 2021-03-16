@@ -28,7 +28,6 @@ CREATE TABLE Quests (
 CREATE TABLE Players (
 	playerID int(11) AUTO_INCREMENT NOT NULL,
 	playerName varchar(255) UNIQUE NOT NULL,
-	numberOfQuestsCompleted int DEFAULT 0,
 	currentQuest int,
 	currentLocationID int DEFAULT 0,
 	playerHealth int DEFAULT 5,
@@ -75,10 +74,10 @@ INSERT INTO Items (itemID, itemName, statBoosted, statBoostAmount, questRewarded
 (1, 'Strength +1', 'strengthStat', 1, 2),
 (2, 'Cursed Item', 'playerHealth', -2, 3);
 
-INSERT INTO Players (playerID, playerName, numberOfQuestsCompleted, currentQuest, currentLocationID, playerHealth, playerMagic, strengthStat, intelligenceStat, defenceStat) VALUES
-(0, 'Default Player', 0, NULL, 0, 5, 5, 5, 5, 5),
-(1, 'Player 1', 2, 3, 1, 5, 5, 6, 5, 7),
-(2, 'Player 2', 1, 2, 3, 3, 5, 5, 5, 5);
+INSERT INTO Players (playerID, playerName, currentQuest, currentLocationID, playerHealth, playerMagic, strengthStat, intelligenceStat, defenceStat) VALUES
+(0, 'Default Player', NULL, 0, 5, 5, 5, 5, 5),
+(1, 'Player 1', 3, 1, 5, 5, 6, 5, 7),
+(2, 'Player 2', 2, 3, 3, 5, 5, 5, 5);
 
 INSERT INTO PlayersItems (playerID, itemID) VALUES
 (1, 0),
