@@ -1,6 +1,6 @@
 To Run:
 
-1. edit dbcon with your info
-2. install node.js with "npm install"
-3. be on the OSU network or connect with a VPN
+1. have a server to host the sql database and website
+2. edit dbcon with your info
+3. install node.js with "npm install"
 4. run "node main.js [port #]"
